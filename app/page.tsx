@@ -1,45 +1,53 @@
 import Image from "next/image";
-import {
-  Flame,
-  Wind,
-  Sparkles,
-  Waves,
-  ArrowRight,
-  UtensilsCrossed,
-} from "lucide-react";
-import {
-  trustSignals,
-  storyImage,
-  stays,
-  experiences,
-  wellness,
-  wellnessBg,
-  dining,
-  arrival,
-  locationImage,
-  offers,
-  testimonials,
-  journal,
-  finalCtaImage,
-} from "@/lib/data";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { ph } from "@/lib/images";
+import { testimonials } from "@/lib/site";
+import { stays } from "@/lib/data/stays";
+import { experiences } from "@/lib/data/experiences";
+import { packages } from "@/lib/data/packages";
+import { journal } from "@/lib/data/journal";
+import { galleryItems } from "@/lib/data/gallery";
 import Hero from "@/components/Hero";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
 import StayCard from "@/components/StayCard";
 import ExperienceCard from "@/components/ExperienceCard";
-import GalleryGrid from "@/components/GalleryGrid";
-import OfferCard from "@/components/OfferCard";
+import PackageCard from "@/components/PackageCard";
+import JournalCard from "@/components/JournalCard";
 import TestimonialCard from "@/components/TestimonialCard";
+import CTASection from "@/components/CTASection";
+import Button from "@/components/Button";
 
-const wellnessIcons = [Wind, Sparkles, Flame, Waves];
+const trustSignals = [
+  {
+    title: "Private mountain villas",
+    text: "A small collection of standalone stays, each opening to its own stretch of ridge and sky.",
+  },
+  {
+    title: "Wellness-led stays",
+    text: "Forest bathing, breathwork, and warm-water rituals woven gently into every itinerary.",
+  },
+  {
+    title: "Highland Filipino dining",
+    text: "Fire, smoke, and mountain harvests at Sulo — our hearth-driven highland restaurant.",
+  },
+  {
+    title: "Concierge arrival support",
+    text: "From city gateway to villa door, every transfer is quietly arranged before you ask.",
+  },
+];
 
 export default function HomePage() {
   return (
     <>
       <Hero />
 
-      {/* 3 — Atmosphere strip */}
-      <section aria-label="What defines Amara Ridge" className="relative border-y border-mist-100/10 bg-pine-900">
+      {/* Trust / atmosphere strip */}
+      <section
+        aria-label="What defines Amara Ridge"
+        className="relative border-y border-mist-100/10 bg-pine-900"
+      >
         <div className="mx-auto grid max-w-7xl gap-px sm:grid-cols-2 lg:grid-cols-4">
           {trustSignals.map((signal, i) => (
             <Reveal key={signal.title} delay={i * 0.08} className="h-full">
@@ -56,8 +64,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4 — Brand story */}
-      <section id="story" className="grain relative overflow-hidden py-24 lg:py-36">
+      {/* Brand story */}
+      <section className="grain relative overflow-hidden py-24 lg:py-36">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-12 lg:px-10">
           <Reveal direction="left" className="lg:col-span-5">
             <p className="text-[11px] uppercase tracking-[0.45em] text-ember-500">
@@ -66,7 +74,9 @@ export default function HomePage() {
             <div className="rule-ember mt-4" />
             <h2 className="mt-6 font-display text-4xl font-light leading-[1.05] text-cream-50 sm:text-5xl lg:text-6xl">
               Where the clouds
-              <span className="block italic text-linen-200">slow everything down</span>
+              <span className="block italic text-linen-200">
+                slow everything down
+              </span>
             </h2>
             <p className="mt-7 text-base font-light leading-relaxed text-mist-100/75">
               Set in the cool upper reaches of the Philippine highlands, Amara
@@ -79,288 +89,226 @@ export default function HomePage() {
               lifts. Coffee is poured when you wake. And the mountain, as our
               guests like to say, sets the pace.
             </p>
-            <a
-              href="#stay"
+            <Link
+              href="/about"
               className="group mt-9 inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-ember-400 transition-colors hover:text-ember-500"
             >
-              Discover the villas
+              Read our story
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-            </a>
+            </Link>
           </Reveal>
           <Reveal direction="right" className="lg:col-span-7">
-            <div className="relative">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={storyImage}
-                  alt="A warm-lit mountain cabin among autumn pines"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-pine-950/40 to-transparent" />
-              </div>
-              <p className="mt-4 text-right text-[10px] uppercase tracking-[0.3em] text-taupe-400">
-                Evening light on the ridge — Amara Ridge concept imagery
-              </p>
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={ph.marlboroHill}
+                alt="Mist moving through the green ridges of the Cordillera"
+                fill
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-pine-950/40 to-transparent" />
             </div>
+            <p className="mt-4 text-right text-[10px] uppercase tracking-[0.3em] text-taupe-400">
+              Morning fog on the ridge line
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* 5 — Signature stays */}
-      <section id="stay" className="relative bg-pine-900 py-24 lg:py-36">
+      {/* Featured stays */}
+      <section className="relative bg-pine-900 py-24 lg:py-36">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <SectionHeader
               eyebrow="Signature Stays"
-              title="Four ways to live above the clouds"
+              title="Villas, suites, and cabins above the clouds"
               intro="Each stay is a private, standalone retreat — no corridors, no crowds, nothing between you and the view."
             />
             <Reveal delay={0.2}>
-              <a
-                href="#reserve"
-                className="hidden border border-mist-100/25 px-8 py-3.5 text-[11px] uppercase tracking-[0.28em] text-mist-100 transition-all duration-300 hover:border-ember-400 hover:text-ember-400 lg:block"
-              >
-                Check Availability
-              </a>
+              <Button href="/stays" variant="outline" className="hidden lg:inline-flex">
+                All Stays <ArrowRight className="h-4 w-4" />
+              </Button>
             </Reveal>
           </div>
           <div className="mt-14 grid gap-8 lg:grid-cols-2">
-            {stays.map((stay, i) => (
-              <StayCard key={stay.name} stay={stay} index={i} />
+            {stays.slice(0, 4).map((stay, i) => (
+              <StayCard key={stay.slug} stay={stay} index={i} />
             ))}
           </div>
+          <Reveal className="mt-12 text-center lg:hidden">
+            <Button href="/stays" variant="outline">
+              View All Stays <ArrowRight className="h-4 w-4" />
+            </Button>
+          </Reveal>
         </div>
       </section>
 
-      {/* 6 — Experiences */}
-      <section id="experiences" className="grain relative py-24 lg:py-36">
+      {/* Featured experiences */}
+      <section className="grain relative py-24 lg:py-36">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
-          <SectionHeader
-            eyebrow="Experiences"
-            title="Days shaped by mist, fire, and mountain time"
-            intro="Nothing is mandatory. Everything is worth waking for."
-          />
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeader
+              eyebrow="Experiences"
+              title="Days shaped by mist, fire, and mountain time"
+              intro="Nothing is mandatory. Everything is worth waking for."
+            />
+            <Reveal delay={0.2}>
+              <Button href="/experiences" variant="outline" className="hidden lg:inline-flex">
+                All Experiences <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Reveal>
+          </div>
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {experiences.map((exp, i) => (
-              <ExperienceCard key={exp.title} experience={exp} index={i} />
+            {experiences.slice(0, 3).map((exp, i) => (
+              <ExperienceCard key={exp.slug} experience={exp} index={i} />
             ))}
           </div>
+          <Reveal className="mt-12 text-center lg:hidden">
+            <Button href="/experiences" variant="outline">
+              View All Experiences <ArrowRight className="h-4 w-4" />
+            </Button>
+          </Reveal>
         </div>
       </section>
 
-      {/* 7 — Wellness */}
-      <section id="wellness" className="relative overflow-hidden py-24 lg:py-36">
-        <Image
-          src={wellnessBg}
-          alt=""
-          aria-hidden
-          fill
-          sizes="100vw"
-          className="object-cover opacity-25"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-pine-950 via-pine-950/60 to-pine-950" />
-        <div className="relative mx-auto max-w-7xl px-5 lg:px-10">
-          <SectionHeader
-            eyebrow="Wellness"
-            title="The art of doing very little, very well"
-            intro={wellness.intro}
-            align="center"
-          />
-          <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div className="grid gap-6 sm:grid-cols-2">
-              {wellness.practices.map((practice, i) => {
-                const Icon = wellnessIcons[i % wellnessIcons.length];
-                return (
-                  <Reveal key={practice.title} delay={(i % 2) * 0.1}>
-                    <div className="h-full border border-mist-100/10 bg-pine-950/50 p-7 backdrop-blur-sm transition-colors duration-500 hover:border-ember-500/30">
-                      <Icon className="h-6 w-6 text-ember-500" strokeWidth={1.25} />
-                      <h3 className="mt-4 font-display text-xl font-light text-cream-50">
-                        {practice.title}
-                      </h3>
-                      <p className="mt-2.5 text-sm font-light leading-relaxed text-mist-100/65">
-                        {practice.text}
-                      </p>
-                    </div>
-                  </Reveal>
-                );
-              })}
-            </div>
-            <Reveal direction="right">
-              <div className="grid grid-cols-2 gap-4">
-                {wellness.images.map((image, i) => (
-                  <div
-                    key={image.src}
-                    className={`relative overflow-hidden ${
-                      i === 0 ? "aspect-[3/4]" : "mt-10 aspect-[3/4]"
-                    }`}
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-[1.4s] hover:scale-[1.05]"
-                    />
-                  </div>
-                ))}
-              </div>
-              <p className="mt-8 border-l-2 border-ember-500/60 pl-5 text-sm font-light italic leading-relaxed text-linen-200/80">
-                {wellness.detox}
+      {/* Wellness teaser */}
+      <section className="relative overflow-hidden border-y border-mist-100/10">
+        <div className="grid lg:grid-cols-2">
+          <div className="relative min-h-[24rem] lg:min-h-[34rem]">
+            <Image
+              src={ph.baguioPines}
+              alt="Late golden light falling through Baguio pines"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-pine-950/20" />
+          </div>
+          <div className="flex items-center bg-pine-900 px-5 py-16 lg:px-16 lg:py-24">
+            <Reveal>
+              <p className="text-[11px] uppercase tracking-[0.45em] text-ember-500">
+                Wellness
               </p>
+              <div className="rule-ember mt-4" />
+              <h2 className="mt-6 font-display text-4xl font-light leading-[1.05] text-cream-50 sm:text-5xl">
+                The art of doing very little, very well
+              </h2>
+              <p className="mt-6 max-w-md text-base font-light leading-relaxed text-mist-100/70">
+                Forest bathing under the pines, breathwork on the ridge deck,
+                hilot-inspired rituals, and warm water against cool highland
+                air. Wellness here is not a schedule to keep — it is the
+                absence of one.
+              </p>
+              <Button href="/wellness" variant="ghost" className="mt-9">
+                Explore Wellness
+              </Button>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* 8 — Dining */}
-      <section id="dining" className="relative border-y border-mist-100/10 bg-mist-100 py-24 text-pine-950 lg:py-36">
-        <div className="mx-auto max-w-7xl px-5 lg:px-10">
-          <div className="grid gap-14 lg:grid-cols-12">
-            <div className="lg:col-span-5">
-              <SectionHeader
-                eyebrow="Highland Dining"
-                title={dining.name}
-                intro={dining.philosophy}
-                tone="light"
-              />
-              <Reveal delay={0.15}>
-                <ul className="mt-10 space-y-6">
-                  {dining.menu.map((item) => (
-                    <li key={item.name} className="border-b border-pine-950/10 pb-5">
-                      <p className="font-display text-xl font-medium text-pine-950">
-                        {item.name}
-                      </p>
-                      <p className="mt-1 text-sm font-light text-pine-950/60">
-                        {item.detail}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
-                  {dining.settings.map((setting) => (
-                    <p
-                      key={setting}
-                      className="flex items-center gap-2.5 text-[11px] uppercase tracking-[0.2em] text-clay-600"
-                    >
-                      <UtensilsCrossed className="h-3.5 w-3.5" />
-                      {setting}
-                    </p>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
-            <div className="lg:col-span-7">
-              <div className="grid h-full grid-cols-2 gap-4">
-                <Reveal direction="right" className="col-span-2">
-                  <div className="relative aspect-[16/9] overflow-hidden">
-                    <Image
-                      src={dining.images[0].src}
-                      alt={dining.images[0].alt}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 58vw"
-                      className="object-cover transition-transform duration-[1.4s] hover:scale-[1.05]"
-                    />
-                  </div>
-                </Reveal>
-                {dining.images.slice(1).map((image, i) => (
-                  <Reveal key={image.src} delay={i * 0.1}>
-                    <div className="relative aspect-square overflow-hidden">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        sizes="(max-width: 1024px) 50vw, 29vw"
-                        className="object-cover transition-transform duration-[1.4s] hover:scale-[1.05]"
-                      />
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
+      {/* Dining teaser */}
+      <section className="relative overflow-hidden">
+        <div className="grid lg:grid-cols-2">
+          <div className="order-2 flex items-center bg-mist-100 px-5 py-16 text-pine-950 lg:order-1 lg:px-16 lg:py-24">
+            <Reveal>
+              <p className="text-[11px] uppercase tracking-[0.45em] text-clay-600">
+                Highland Dining
+              </p>
+              <h2 className="mt-6 font-display text-4xl font-light leading-[1.05] sm:text-5xl">
+                Sulo at the Ridge
+              </h2>
+              <p className="mt-6 max-w-md text-base font-light leading-relaxed text-pine-950/70">
+                Sulo — the Filipino torch — is a restaurant built around fire:
+                seasonal mountain produce, native grains, smoke, and slow
+                breakfasts served above the clouds.
+              </p>
+              <Button href="/dining" variant="outlineDark" className="mt-9">
+                See the Menu
+              </Button>
+            </Reveal>
+          </div>
+          <div className="relative order-1 min-h-[24rem] lg:order-2 lg:min-h-[34rem]">
+            <Image
+              src={ph.tagaytayBreakfast}
+              alt="A slow terrace breakfast overlooking a green highland valley"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
 
-      {/* 9 — Gallery */}
-      <section id="gallery" className="grain relative py-24 lg:py-36">
+      {/* Gallery preview */}
+      <section className="grain relative border-t border-mist-100/10 py-24 lg:py-36">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <SectionHeader
             eyebrow="Gallery"
             title="Scenes from the ridge"
             align="center"
           />
-          <div className="mt-14">
-            <GalleryGrid />
-          </div>
-        </div>
-      </section>
-
-      {/* 10 — Location / arrival */}
-      <section id="location" className="relative overflow-hidden bg-pine-900 py-24 lg:py-36">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:px-10">
-          <Reveal direction="left">
-            <div className="relative aspect-[4/5] overflow-hidden sm:aspect-[5/4] lg:aspect-[4/5]">
-              <Image
-                src={locationImage}
-                alt="A green mountain valley beneath moving clouds"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-pine-950/60 via-transparent to-transparent" />
-              <p className="absolute bottom-5 left-6 max-w-xs font-display text-2xl font-light italic text-cream-50">
-                “Above the valley fog, below nothing at all.”
-              </p>
-            </div>
-          </Reveal>
-          <div>
-            <SectionHeader
-              eyebrow="Location & Arrival"
-              title="High in the Philippine highlands"
-              intro={arrival.intro}
-            />
-            <Reveal delay={0.15}>
-              <ul className="mt-10 space-y-6">
-                {arrival.points.map((point, i) => (
-                  <li key={point.title} className="flex gap-5">
-                    <span className="font-display text-lg font-light text-ember-500">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <p className="font-display text-lg text-linen-200">
-                        {point.title}
-                      </p>
-                      <p className="mt-1 text-sm font-light leading-relaxed text-mist-100/60">
-                        {point.text}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* 11 — Offers */}
-      <section id="offers" className="grain relative py-24 lg:py-36">
-        <div className="mx-auto max-w-7xl px-5 lg:px-10">
-          <SectionHeader
-            eyebrow="Seasonal Offers"
-            title="Stays composed for you"
-            intro="Three ways to give the mountain more than a night. Rates are shared upon request through our concierge."
-          />
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {offers.map((offer, i) => (
-              <OfferCard key={offer.name} offer={offer} index={i} />
+          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {galleryItems.slice(0, 8).map((item, i) => (
+              <Reveal key={item.src} direction="zoom" delay={(i % 4) * 0.08}>
+                <Link
+                  href="/gallery"
+                  aria-label={`Open gallery — ${item.alt}`}
+                  className="group relative block overflow-hidden"
+                >
+                  <div
+                    className={`relative ${i % 4 === 1 || i % 4 === 2 ? "aspect-[3/4]" : "aspect-square"}`}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.06]"
+                    />
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
+          <Reveal className="mt-12 text-center">
+            <Button href="/gallery" variant="outline">
+              View Full Gallery <ArrowRight className="h-4 w-4" />
+            </Button>
+          </Reveal>
         </div>
       </section>
 
-      {/* 12 — Testimonials */}
-      <section aria-label="Guest words" className="relative bg-pine-900 py-24 lg:py-32">
+      {/* Packages preview */}
+      <section className="relative bg-pine-900 py-24 lg:py-36">
+        <div className="mx-auto max-w-7xl px-5 lg:px-10">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeader
+              eyebrow="Seasonal Offers"
+              title="Stays composed for you"
+              intro="Rates are shared upon request through our concierge."
+            />
+            <Reveal delay={0.2}>
+              <Button href="/offers" variant="outline" className="hidden lg:inline-flex">
+                All Offers <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Reveal>
+          </div>
+          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+            {packages.slice(0, 2).map((pkg, i) => (
+              <PackageCard key={pkg.slug} pkg={pkg} index={i} />
+            ))}
+          </div>
+          <Reveal className="mt-12 text-center lg:hidden">
+            <Button href="/offers" variant="outline">
+              View All Offers <ArrowRight className="h-4 w-4" />
+            </Button>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section aria-label="Guest words" className="grain relative py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <SectionHeader
             eyebrow="Guest Words"
@@ -382,92 +330,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 13 — Journal */}
-      <section id="journal" className="grain relative py-24 lg:py-36">
+      {/* Journal preview */}
+      <section className="relative border-t border-mist-100/10 bg-pine-900 py-24 lg:py-36">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeader
-              eyebrow="The Ridge Journal"
-              title="Notes from the mountain"
-            />
+            <SectionHeader eyebrow="The Ridge Journal" title="Notes from the mountain" />
             <Reveal delay={0.2}>
-              <a
-                href="#journal"
+              <Link
+                href="/journal"
                 className="hidden items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-ember-400 transition-colors hover:text-ember-500 lg:flex"
               >
                 All stories <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </Reveal>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-3">
-            {journal.map((article, i) => (
-              <Reveal key={article.title} delay={(i % 3) * 0.1}>
-                <article className="group cursor-pointer">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-[1.3s] ease-out group-hover:scale-[1.06]"
-                    />
-                    <span className="absolute left-4 top-4 bg-pine-950/70 px-3.5 py-1.5 text-[10px] uppercase tracking-[0.25em] text-linen-200 backdrop-blur-sm">
-                      {article.tag}
-                    </span>
-                  </div>
-                  <h3 className="mt-5 font-display text-2xl font-light leading-snug text-cream-50 transition-colors duration-300 group-hover:text-ember-400">
-                    {article.title}
-                  </h3>
-                  <p className="mt-2.5 text-sm font-light leading-relaxed text-mist-100/60">
-                    {article.excerpt}
-                  </p>
-                </article>
-              </Reveal>
+            {journal.slice(0, 3).map((post, i) => (
+              <JournalCard key={post.slug} post={post} index={i} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* 14 — Final CTA */}
-      <section id="reserve" className="relative overflow-hidden">
-        <Image
-          src={finalCtaImage}
-          alt="Starlit sky over dark mountain silhouettes"
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-pine-950/75" />
-        <div className="grain relative mx-auto max-w-3xl px-5 py-32 text-center lg:py-44">
-          <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.5em] text-ember-400">
-              Reservations
-            </p>
-            <h2 className="mt-6 font-display text-5xl font-light leading-[1.02] text-cream-50 sm:text-6xl lg:text-7xl">
-              Let the mountain
-              <span className="block italic text-linen-200">set the pace.</span>
-            </h2>
-            <p className="mx-auto mt-7 max-w-xl text-base font-light leading-relaxed text-mist-100/80">
-              Reserve a private highland stay shaped around misty mornings,
-              firelit evenings, and time that finally feels unhurried.
-            </p>
-            <div className="mt-11 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href="#top"
-                className="w-full bg-ember-500 px-10 py-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-pine-950 transition-all duration-300 hover:bg-ember-400 hover:shadow-xl hover:shadow-ember-500/20 sm:w-auto"
-              >
-                Reserve Your Stay
-              </a>
-              <a
-                href="mailto:reserve@amararidge.ph"
-                className="w-full border border-mist-100/40 px-10 py-4 text-[11px] uppercase tracking-[0.28em] text-mist-100 transition-all duration-300 hover:border-ember-400 hover:text-ember-400 sm:w-auto"
-              >
-                Speak With Concierge
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <CTASection />
     </>
   );
 }

@@ -2,29 +2,37 @@
 
 *A mountain sanctuary above the Philippine clouds.*
 
-A cinematic, single-page luxury mountain resort concept website — a fictional
-brand set in the Philippine highlands: private villas, misty mornings,
-highland Filipino dining, and wellness-led stays.
+A fully clickable, multi-page luxury mountain resort concept website for a
+fictional brand in the Philippine highlands. **Every photograph on the site
+was verified as taken in the Philippines** (Mt. Pulag, Sagada, Batad, Baguio,
+Davao, Tagaytay, and more) via Unsplash location metadata.
 
 **Stack:** Next.js 16 · TypeScript · Tailwind CSS v4 · Framer Motion
 
-## Homepage sections
+## Routes
 
-Premium nav (transparent → blurred solid) · cinematic hero with drifting mist
-and floating booking bar · atmosphere strip · brand story · 4 signature stays ·
-6 experiences · wellness · Sulo at the Ridge (highland dining) · editorial
-gallery · location & arrival · 3 seasonal offers · sample guest words ·
-journal · final CTA · full footer.
+| Route | Page |
+| --- | --- |
+| `/` | Cinematic home — hero + booking bar, stays, experiences, wellness/dining teasers, gallery, offers, journal, CTA |
+| `/stays` + `/stays/[slug]` | 6 stays with full detail pages (amenities, inclusions, highlights, gallery, related stays) |
+| `/experiences` | 8 highland experiences |
+| `/wellness` | Six practices, digital detox, wellness packages |
+| `/dining` | Sulo at the Ridge — philosophy, sample menu, three dining settings |
+| `/gallery` | Filterable gallery (Villas · Dining · Wellness · Landscape · Experiences) with keyboard-accessible lightbox |
+| `/offers` | 4 packages, rates upon request |
+| `/journal` + `/journal/[slug]` | 4 full editorial articles with related reading |
+| `/location` | Arrival, illustrative map panel, surroundings |
+| `/booking` | Validated booking inquiry form with query-param preselection (`?stay=`, `?package=`, `?experience=`) |
+| `/contact` | Concierge contact form + FAQ |
+| `/about` | Brand story, values, team placeholder |
+| 404 | Branded not-found page |
 
-## Design system
+## Data architecture
 
-- Palette: Pine Black `#101713`, Deep Forest `#1F3328`, Moss `#526B4E`,
-  Cloud Mist `#F4F1EA`, Warm Linen `#E7D8C6`, Stone Taupe `#B9AA96`,
-  Ember Gold `#C59B61`, Clay Brown `#7A5A3D`, Soft White `#FFFDF8`
-- Type: Cormorant Garamond (display) + Manrope (body)
-- Motion: Framer Motion scroll reveals, slow hero drift, mist band, hover
-  lifts and image zooms — all softened for `prefers-reduced-motion`
-- Texture: SVG film grain, radial vignettes, backdrop blur, hairline borders
+All content lives in typed data files: `lib/data/stays.ts`,
+`lib/data/experiences.ts`, `lib/data/packages.ts`, `lib/data/journal.ts`,
+`lib/data/gallery.ts`, plus `lib/images.ts` (the verified Philippine image
+map) and `lib/site.ts` (nav + contact).
 
 ## Run locally
 
@@ -35,5 +43,6 @@ npm run dev
 
 ## Notes
 
-Amara Ridge is a fictional brand. All copy, testimonials, and offers are
-illustrative; the booking bar is a static prototype. Photography via Unsplash.
+Amara Ridge is a fictional brand. Forms are client-side prototypes (no data
+is sent), rates are intentionally "upon request," and no real travel claims
+are made. Photography via Unsplash, Philippines-only.

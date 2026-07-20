@@ -1,8 +1,11 @@
+import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { FacebookIcon, InstagramIcon } from "@/components/BrandIcons";
-import { nav, site } from "@/lib/data";
+import { footerNav, site } from "@/lib/site";
 
 export default function Footer() {
+  const columns = [footerNav.slice(0, 6), footerNav.slice(6)];
+
   return (
     <footer className="border-t border-mist-100/10 bg-pine-950">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:grid-cols-2 lg:grid-cols-4 lg:px-10">
@@ -17,32 +20,44 @@ export default function Footer() {
             A fictional concept for a private highland sanctuary — misty
             mornings, firelit evenings, and Filipino warmth above the clouds.
           </p>
+          <div className="mt-6 flex gap-3">
+            <a
+              href="#"
+              aria-label="Facebook (placeholder — not a real profile)"
+              className="border border-mist-100/15 p-3 text-mist-100/60 transition-colors duration-300 hover:border-ember-500/60 hover:text-ember-400"
+            >
+              <FacebookIcon />
+            </a>
+            <a
+              href="#"
+              aria-label="Instagram (placeholder — not a real profile)"
+              className="border border-mist-100/15 p-3 text-mist-100/60 transition-colors duration-300 hover:border-ember-500/60 hover:text-ember-400"
+            >
+              <InstagramIcon />
+            </a>
+          </div>
         </div>
 
-        <nav aria-label="Footer">
-          <h3 className="text-[11px] uppercase tracking-[0.35em] text-ember-500">
-            The Retreat
-          </h3>
-          <ul className="mt-6 space-y-3 text-sm font-light">
-            {nav.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-mist-100/65 transition-colors duration-300 hover:text-ember-400"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a
-                href="#reserve"
-                className="text-mist-100/65 transition-colors duration-300 hover:text-ember-400"
-              >
-                Reserve
-              </a>
-            </li>
-          </ul>
+        <nav aria-label="Footer" className="grid grid-cols-2 gap-8 sm:col-span-1">
+          {columns.map((column, ci) => (
+            <div key={ci}>
+              <h3 className="text-[11px] uppercase tracking-[0.35em] text-ember-500">
+                {ci === 0 ? "The Retreat" : "Plan"}
+              </h3>
+              <ul className="mt-6 space-y-3 text-sm font-light">
+                {column.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-mist-100/65 transition-colors duration-300 hover:text-ember-400"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </nav>
 
         <div>
@@ -63,22 +78,9 @@ export default function Footer() {
               {site.email}
             </li>
           </ul>
-          <div className="mt-6 flex gap-3">
-            <a
-              href="#top"
-              aria-label="Facebook (placeholder link)"
-              className="border border-mist-100/15 p-3 text-mist-100/60 transition-colors duration-300 hover:border-ember-500/60 hover:text-ember-400"
-            >
-              <FacebookIcon />
-            </a>
-            <a
-              href="#top"
-              aria-label="Instagram (placeholder link)"
-              className="border border-mist-100/15 p-3 text-mist-100/60 transition-colors duration-300 hover:border-ember-500/60 hover:text-ember-400"
-            >
-              <InstagramIcon />
-            </a>
-          </div>
+          <p className="mt-5 text-xs font-light leading-relaxed text-mist-100/45">
+            {site.concierge}
+          </p>
         </div>
 
         <div>
@@ -106,6 +108,9 @@ export default function Footer() {
               Join
             </button>
           </form>
+          <p className="mt-3 text-[11px] font-light text-mist-100/40">
+            Prototype signup — no emails are collected.
+          </p>
         </div>
       </div>
 
@@ -115,17 +120,14 @@ export default function Footer() {
             © {new Date().getFullYear()} Amara Ridge. A fictional brand concept
             — all content illustrative.
           </p>
-          <div className="flex gap-6">
-            <a href="#top" className="transition-colors hover:text-ember-400">
-              Privacy
-            </a>
-            <a href="#top" className="transition-colors hover:text-ember-400">
-              Terms
-            </a>
-            <a href="#top" className="transition-colors hover:text-ember-400">
-              Accessibility
-            </a>
-          </div>
+          <p className="flex gap-6">
+            <span className="cursor-default" title="Placeholder — no policy page exists">
+              Privacy (placeholder)
+            </span>
+            <span className="cursor-default" title="Placeholder — no terms page exists">
+              Terms (placeholder)
+            </span>
+          </p>
         </div>
       </div>
     </footer>
