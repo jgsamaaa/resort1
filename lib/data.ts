@@ -2,268 +2,352 @@ const img = (id: string, w = 1600, q = 80) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=${q}`;
 
 export const site = {
-  name: "Dalisay Cove",
-  fullName: "Dalisay Cove Beach Resort & Villas",
-  tagline: "Where the island breathes",
-  location: "Lio Beach, El Nido, Palawan, Philippines",
-  phone: "+63 917 555 0148",
-  landline: "+63 (48) 723 0148",
-  email: "stay@dalisaycove.ph",
-  whatsapp: "+63 917 555 0148",
-  address: "Sitio Lio, Barangay Villa Libertad, El Nido, Palawan 5313, Philippines",
-  facebook: "facebook.com/dalisaycove",
-  instagram: "@dalisaycove",
-  hours: "Front desk open 24/7 · Reservations 8:00 AM – 8:00 PM (GMT+8)",
-  mapEmbed:
-    "https://www.google.com/maps?q=Lio+Beach,+El+Nido,+Palawan,+Philippines&z=12&output=embed",
+  name: "Amara Ridge",
+  tagline: "A mountain sanctuary above the Philippine clouds.",
+  eyebrow: "Philippine Highlands",
+  email: "reserve@amararidge.ph",
+  phone: "+63 917 000 0000",
+  concierge: "Concierge available daily, 6:00 AM – 10:00 PM (GMT+8)",
+  address: "The Philippine Highlands · exact location shared upon reservation",
 };
 
-export const heroImages = {
-  home: img("1507525428034-b723cf961d3e", 2200),
-  rooms: img("1582719508461-905c673771fd", 2200),
-  about: img("1519046904884-53103b34b206", 2200),
-  location: img("1518509562904-e7ef99cdcc86", 2200),
-  booking: img("1540541338287-41700207dee6", 2200),
-  contact: img("1510414842594-a61c69b5ae57", 2200),
-};
+export const nav = [
+  { href: "#stay", label: "Stay" },
+  { href: "#experiences", label: "Experiences" },
+  { href: "#wellness", label: "Wellness" },
+  { href: "#dining", label: "Dining" },
+  { href: "#location", label: "Location" },
+  { href: "#gallery", label: "Gallery" },
+];
 
-export type Room = {
-  slug: string;
-  name: string;
-  kind: "Room" | "Suite" | "Villa";
-  shortDescription: string;
-  description: string;
-  pricePHP: number;
-  priceUSD: number;
-  size: string;
-  guests: number;
-  bed: string;
-  view: string;
-  image: string;
-  features: string[];
-};
+export const heroImage = img("1506905925346-21bda4d32df4", 2400);
+export const storyImage = img("1470770841072-f978cf4d019e", 1600);
+export const locationImage = img("1458668383970-8ddd3927deed", 2000);
+export const wellnessBg = img("1487621167305-5d248087c724", 2200);
+export const finalCtaImage = img("1519681393784-d120267933ba", 2400);
 
-export const rooms: Room[] = [
+export const trustSignals = [
   {
-    slug: "garden-bungalow",
-    name: "Garden Bungalow",
-    kind: "Room",
-    shortDescription:
-      "A native-inspired hideaway wrapped in frangipani and palms, steps from the shore.",
-    description:
-      "Built with warm narra wood and woven sawali accents, the Garden Bungalow blends traditional Filipino craftsmanship with quiet modern comfort. Wake to birdsong, sip barako coffee on your private veranda, and let the sea breeze drift through.",
-    pricePHP: 6500,
-    priceUSD: 115,
-    size: "32 sqm",
-    guests: 2,
-    bed: "1 Queen bed",
-    view: "Tropical garden",
-    image: img("1590490360182-c33d57733427"),
-    features: [
-      "Private veranda with hammock",
-      "Rain shower with organic amenities",
-      "Air-conditioning + ceiling fan",
-      "Daily breakfast for two",
-    ],
+    title: "Private mountain villas",
+    text: "A small collection of standalone stays, each opening to its own stretch of ridge and sky.",
   },
   {
-    slug: "deluxe-ocean-room",
-    name: "Deluxe Ocean Room",
-    kind: "Room",
-    shortDescription:
-      "Floor-to-ceiling views of Bacuit Bay from a king bed you will not want to leave.",
-    description:
-      "Every sunrise performs just for you. The Deluxe Ocean Room pairs a plush king bed with a picture window over the bay, a deep soaking tub, and a balcony made for slow mornings and mango shakes.",
-    pricePHP: 8900,
-    priceUSD: 157,
-    size: "38 sqm",
-    guests: 2,
-    bed: "1 King bed",
-    view: "Bacuit Bay",
-    image: img("1611892440504-42a792e24d32"),
-    features: [
-      "Ocean-view balcony",
-      "Deep soaking tub",
-      "Smart TV + high-speed Wi-Fi",
-      "Daily breakfast for two",
-    ],
+    title: "Wellness-led stays",
+    text: "Forest bathing, breathwork, and warm-water rituals woven gently into every itinerary.",
   },
   {
-    slug: "beachfront-suite",
-    name: "Beachfront Suite",
-    kind: "Suite",
-    shortDescription:
-      "Zero steps between your terrace and the sand. Our most-loved stay.",
-    description:
-      "Slide the doors open and the beach is your living room. The Beachfront Suite offers a separate lounge, an outdoor daybed for two, and front-row seats to El Nido's famous tangerine sunsets.",
-    pricePHP: 12500,
-    priceUSD: 220,
-    size: "52 sqm",
-    guests: 3,
-    bed: "1 King bed + daybed",
-    view: "Direct beachfront",
-    image: img("1583417319070-4a69db38a482"),
-    features: [
-      "Direct beach access",
-      "Outdoor sunset daybed",
-      "Separate lounge area",
-      "Evening turndown with local sweets",
-    ],
+    title: "Highland Filipino dining",
+    text: "Fire, smoke, and mountain harvests at Sulo — our hearth-driven highland restaurant.",
   },
   {
-    slug: "family-loft",
-    name: "Family Loft",
-    kind: "Suite",
-    shortDescription:
-      "Two storeys of space for the whole barkada — sleeps five in breezy comfort.",
-    description:
-      "Downstairs, a king bed and living space; upstairs, a loft the kids will fight over. The Family Loft keeps everyone together without anyone feeling squeezed, with a wide balcony overlooking the pool and the sea beyond.",
-    pricePHP: 10900,
-    priceUSD: 192,
-    size: "64 sqm",
-    guests: 5,
-    bed: "1 King + 3 singles (loft)",
-    view: "Pool & partial sea",
-    image: img("1566073771259-6a8506099945"),
-    features: [
-      "Two-storey loft layout",
-      "Kid-friendly amenities",
-      "Wide pool-view balcony",
-      "Daily breakfast for four",
-    ],
-  },
-  {
-    slug: "villa-dalisay",
-    name: "Villa Dalisay",
-    kind: "Villa",
-    shortDescription:
-      "The crown of the cove — a two-bedroom pool villa with its own slice of ocean.",
-    description:
-      "Our signature villa sits on the quiet northern tip of the cove: two bedrooms, an infinity plunge pool that melts into the horizon, a private chef on request, and a dedicated villa host. Honeymoons, milestones, or simply because — Villa Dalisay is the memory you keep.",
-    pricePHP: 24000,
-    priceUSD: 423,
-    size: "140 sqm + pool deck",
-    guests: 4,
-    bed: "2 King bedrooms",
-    view: "Panoramic ocean, private pool",
-    image: img("1571896349842-33c89424de2d"),
-    features: [
-      "Private infinity plunge pool",
-      "Dedicated villa host",
-      "Private chef on request",
-      "Sunset cocktail set-up included",
-    ],
+    title: "Concierge arrival support",
+    text: "From city gateway to villa door, every transfer is quietly arranged before you ask.",
   },
 ];
 
-export type Review = {
+export type Stay = {
   name: string;
-  origin: string;
-  rating: number;
-  date: string;
+  description: string;
+  amenities: string[];
+  bestFor: string;
+  image: string;
+  premium?: boolean;
+};
+
+export const stays: Stay[] = [
+  {
+    name: "Cloudline Villa",
+    description:
+      "Our highest villa, set where the ridge meets open sky. Floor-to-ceiling glass frames the cloud sea at dawn; by night, the fireplace and heated plunge pool hold the warmth in.",
+    amenities: [
+      "Private terrace",
+      "Indoor fireplace",
+      "Heated plunge pool",
+      "Deep soaking tub",
+      "Mountain view",
+      "Breakfast service",
+    ],
+    bestFor: "Couples marking something worth remembering",
+    image: img("1499696010180-025ef6e1a8f9"),
+    premium: true,
+  },
+  {
+    name: "Pine House Suite",
+    description:
+      "A warm, timber-lined suite beneath the pines — linen, lamplight, and a window seat made for slow afternoons with coffee and a book.",
+    amenities: [
+      "Private terrace",
+      "Reading nook",
+      "Mountain view",
+      "Deep soaking tub",
+      "Breakfast service",
+    ],
+    bestFor: "Solo retreats and quiet working escapes",
+    image: img("1522708323590-d24dbb6b0267"),
+  },
+  {
+    name: "Terrace Hearth Villa",
+    description:
+      "Built around a great stone hearth, with a wide terrace and firepit for long evenings. Two bedrooms, one long table, and room for the people you love.",
+    amenities: [
+      "Two bedrooms",
+      "Stone fireplace",
+      "Terrace firepit",
+      "Mountain view",
+      "Breakfast service",
+    ],
+    bestFor: "Families and small gatherings",
+    image: img("1513694203232-719a280e022f"),
+  },
+  {
+    name: "Forest Bathing Cabin",
+    description:
+      "A pared-back cabin deep in the pines, designed for digital rest — soft light, natural textures, and nothing between you and the forest but glass.",
+    amenities: [
+      "Forest immersion deck",
+      "Outdoor firepit",
+      "Deep soaking tub",
+      "Digital detox setup",
+      "Breakfast service",
+    ],
+    bestFor: "Deep rest and unplugged weekends",
+    image: img("1445019980597-93fa8acb246c"),
+  },
+];
+
+export type Experience = {
   title: string;
   text: string;
+  image: string;
 };
 
-export const reviews: Review[] = [
+export const experiences: Experience[] = [
   {
-    name: "Maria Santos",
-    origin: "Manila, Philippines",
-    rating: 5,
-    date: "June 2026",
-    title: "Sobrang ganda — better than the photos",
-    text: "We stayed three nights in the Beachfront Suite and honestly did not want to leave. The staff remembered our names by day one, the halo-halo by the pool is dangerous, and the sunset... iba talaga. Booking again for our anniversary.",
+    title: "Sunrise ridge walk",
+    text: "Leave before first light with a guide and a thermos of highland coffee. Arrive as the valley fills with cloud below your feet.",
+    image: img("1464822759023-fed622ff2c3b", 1200),
   },
   {
-    name: "James & Olivia Carter",
-    origin: "Sydney, Australia",
-    rating: 5,
-    date: "May 2026",
-    title: "The best resort we've stayed at in Asia",
-    text: "We've done Bali, Phuket and the Maldives — Dalisay Cove beat them all on warmth alone. Villa Dalisay's plunge pool at sunrise is something else. The island-hopping tour the resort arranged was the highlight of our year.",
+    title: "Private firepit dinner",
+    text: "A table for two beside open flame — slow-grilled courses, blankets, and a sky that gets darker and brighter at once.",
+    image: img("1478827387698-1527781a4887", 1200),
   },
   {
-    name: "Ji-woo Park",
-    origin: "Seoul, South Korea",
-    rating: 5,
-    date: "April 2026",
-    title: "Perfect honeymoon 💛",
-    text: "Everything was effortless. Airport pickup was waiting, flower petals in the room, and the private chef dinner on the beach made my wife cry (happy tears!). El Nido is paradise and this is the best seat in it.",
-  },
-  {
-    name: "Lena Hoffmann",
-    origin: "Berlin, Germany",
-    rating: 4,
-    date: "March 2026",
-    title: "Stunning, peaceful, real",
-    text: "Not a mega-resort — and that is exactly the point. It feels personal and rooted in the community. Kayaked straight off the beach in the morning, massage in the garden pavilion in the afternoon. Wi-Fi was solid enough to work a little, sadly.",
-  },
-  {
-    name: "Daniel Reyes",
-    origin: "San Diego, USA",
-    rating: 5,
-    date: "February 2026",
-    title: "Brought my mom back to Palawan",
-    text: "First trip home in 15 years and I wanted it to be special. The team went above and beyond — they even prepared her favorite kinilaw without us asking twice. My mom said it felt like the Palawan of her childhood, but with better pillows.",
-  },
-  {
-    name: "Sophie Tan",
-    origin: "Singapore",
-    rating: 5,
-    date: "January 2026",
-    title: "Weekend escape done right",
-    text: "90 minutes from the airstrip to a mango shake on my balcony. The Deluxe Ocean Room is immaculate, breakfast is generous, and the staff's 'no problem, ma'am' energy is unmatched. Already told my whole office.",
-  },
-  {
-    name: "Tom Whitfield",
-    origin: "London, UK",
-    rating: 5,
-    date: "December 2025",
-    title: "Worth every mile of the journey",
-    text: "Yes, it takes a couple of flights to get here. Then you wade into water so clear it looks rendered, someone hands you a fresh buko, and the jet lag evaporates. The Family Loft handled our three kids with room to spare.",
-  },
-];
-
-export const amenities = [
-  {
-    title: "Infinity Pool",
-    description: "A 25-metre edge that dissolves into Bacuit Bay, ringed by daybeds and palms.",
-    image: img("1540541338287-41700207dee6", 1200),
-  },
-  {
-    title: "Kubo Spa",
-    description: "Hilot massage and coconut rituals in open-air garden pavilions.",
+    title: "Highland spa ritual",
+    text: "Warm stone, mountain herbs, and unhurried hands. A treatment paced to the mist, not the clock.",
     image: img("1544161515-4ab6ce6db874", 1200),
   },
   {
-    title: "Talahib Restaurant",
-    description: "Modern Filipino cooking — day-boat catch, wood-fire, and heirloom rice.",
+    title: "Filipino farm-to-table tasting",
+    text: "Meet the morning's harvest before it meets the fire. Six courses drawn from gardens a short walk from your table.",
     image: img("1414235077428-338989a2e8c0", 1200),
   },
   {
-    title: "Island Hopping",
-    description: "Private lagoon tours A–D with our own bangka boats and guides.",
-    image: img("1544551763-46a013bb70d5", 1200),
+    title: "Valley cultural tour",
+    text: "Weavers, woodcarvers, and highland kitchens — an afternoon among the crafts and stories that shaped these mountains.",
+    image: img("1501785888041-af3ef285b470", 1200),
   },
   {
-    title: "Beach Bar",
-    description: "Barefoot cocktails, local rum, and front-row sunsets every evening.",
-    image: img("1559339352-11d035aa65de", 1200),
-  },
-  {
-    title: "Water Sports",
-    description: "Kayaks, paddleboards and snorkel gear — free for every guest, every day.",
-    image: img("1573790387438-4da905039392", 1200),
+    title: "Slow coffee & cacao ceremony",
+    text: "Single-origin highland beans and stone-ground tablea, brewed slowly at your terrace as the fog lifts.",
+    image: img("1495474472287-4d71bcdd2085", 1200),
   },
 ];
 
-export const galleryImages = [
-  { src: img("1506929562872-bb421503ef21", 1200), alt: "White sand beach at Dalisay Cove" },
-  { src: img("1573843981267-be1999ff37cd", 1200), alt: "Island viewpoint over turquoise water" },
-  { src: img("1520250497591-112f2f40a3f4", 1200), alt: "Resort pool at golden hour" },
-  { src: img("1540202404-a2f29016b523", 1200), alt: "Floating breakfast tray" },
-  { src: img("1468413253725-0d5181091126", 1200), alt: "Sunset over Bacuit Bay" },
-  { src: img("1600334129128-685c5582fd35", 1200), alt: "Spa treatment in the garden pavilion" },
-  { src: img("1582610116397-edb318620f90", 1200), alt: "Poolside loungers under palms" },
-  { src: img("1559128010-7c1ad6e1b6a5", 1200), alt: "Limestone cliffs of El Nido" },
+export const wellness = {
+  intro:
+    "Wellness at Amara Ridge is not a schedule to keep. It is the absence of one.",
+  practices: [
+    {
+      title: "Forest bathing",
+      text: "Guided shinrin-yoku walks through pine and fern — slow, silent, and led by the forest itself.",
+    },
+    {
+      title: "Breathwork & meditation",
+      text: "Morning sessions on the ridge deck, timed to the hour the clouds begin to move.",
+    },
+    {
+      title: "Spa rituals",
+      text: "Hilot-inspired massage and warm herbal compresses in treatment rooms open to the trees.",
+    },
+    {
+      title: "Warm water culture",
+      text: "Cedar sauna, warm soaking baths, and heated plunge pools — heat, steam, and mountain air in rotation.",
+    },
+  ],
+  detox:
+    "Should you wish it, we will keep your devices safe at reception and leave a field notebook in their place. Most guests who try it stop asking what time it is by the second morning.",
+  images: [
+    {
+      src: img("1441974231531-c6227db76b6e", 1400),
+      alt: "Sunlight falling through a pine forest canopy",
+    },
+    {
+      src: img("1518495973542-4542c06a5843", 1400),
+      alt: "Soft light through forest leaves",
+    },
+  ],
+};
+
+export const dining = {
+  name: "Sulo at the Ridge",
+  philosophy:
+    "Sulo — the Filipino torch — is a restaurant built around fire. Seasonal mountain produce, native grains, smoke, and slow mornings, cooked over ember and served above the clouds.",
+  menu: [
+    {
+      name: "Charred mountain vegetables",
+      detail: "coconut vinaigrette, toasted seeds, garden herbs",
+    },
+    {
+      name: "Native chicken broth",
+      detail: "ginger, lemongrass, wild mountain greens",
+    },
+    {
+      name: "Longganisa breakfast",
+      detail: "garlic rice, soft egg, cane vinegar — served until late morning",
+    },
+    {
+      name: "Smoked cacao tablea tart",
+      detail: "stone-ground highland cacao, sea salt, cream",
+    },
+    {
+      name: "Sunrise coffee service",
+      detail: "single-origin highland beans, brewed at your terrace",
+    },
+  ],
+  settings: [
+    "Private terrace breakfast",
+    "Firepit dinner under the pines",
+    "Chef's tasting menu at the hearth counter",
+  ],
+  images: [
+    { src: img("1476224203421-9ac39bcb3327", 1400), alt: "Seasonal vegetables plated at Sulo" },
+    { src: img("1504754524776-8f4f37790ca0", 1400), alt: "Slow highland breakfast spread" },
+    { src: img("1481391319762-47dff72954d9", 1400), alt: "Smoked cacao tablea tart" },
+  ],
+};
+
+export const gallery = [
+  { src: img("1454496522488-7a8e488e8606", 1600), alt: "Amara Ridge exterior above misty peaks", span: "wide" },
+  { src: img("1499696010180-025ef6e1a8f9", 1200), alt: "Villa bedroom opening to the mountains", span: "tall" },
+  { src: img("1513694203232-719a280e022f", 1200), alt: "Fireplace lounge in warm light", span: "" },
+  { src: img("1571896349842-33c89424de2d", 1200), alt: "Heated plunge pool at dusk", span: "" },
+  { src: img("1600334129128-685c5582fd35", 1200), alt: "Forest spa ritual", span: "tall" },
+  { src: img("1476224203421-9ac39bcb3327", 1200), alt: "Highland dining at Sulo", span: "" },
+  { src: img("1542718610-a1d656d1884c", 1200), alt: "Misty forest trail", span: "" },
+  { src: img("1510798831971-661eb04b3739", 1600), alt: "Sunset over the ridges", span: "wide" },
+] as const;
+
+export const arrival = {
+  intro:
+    "Amara Ridge rests in the cool upper elevations of the Philippine highlands, wrapped in pine forest and cloud. Arrival times vary by selected route; concierge-assisted transfers may be arranged from major city gateways.",
+  points: [
+    {
+      title: "Mountain setting",
+      text: "Villas sit along a quiet ridge line, above the valley fog and below nothing at all.",
+    },
+    {
+      title: "Forest trails",
+      text: "Pine and mossy-forest walking trails begin steps from the villa paths.",
+    },
+    {
+      title: "Valley viewpoints",
+      text: "Ridge decks and lookout points face the sunrise — and the cloud sea beneath it.",
+    },
+    {
+      title: "Cultural highlands",
+      text: "Weaving villages, terraced farms, and highland markets lie within touring distance.",
+    },
+    {
+      title: "Concierge arrival",
+      text: "Share your route and our team will meet you at the gateway of your choice.",
+    },
+  ],
+};
+
+export type Offer = {
+  name: string;
+  description: string;
+  includes: string[];
+};
+
+export const offers: Offer[] = [
+  {
+    name: "Cloudline Romance",
+    description:
+      "Two nights in the Cloudline Villa, built around one long, unhurried evening by the fire.",
+    includes: [
+      "Private firepit dinner for two",
+      "Sunrise terrace breakfast daily",
+      "Couples' highland spa ritual",
+      "Late checkout, cloud-schedule permitting",
+    ],
+  },
+  {
+    name: "The Wellness Weekend",
+    description:
+      "Three days of forest bathing, breathwork, and warm water — with your phone resting as deeply as you are.",
+    includes: [
+      "Daily guided forest bathing",
+      "Morning breathwork on the ridge",
+      "Two spa rituals of your choosing",
+      "Optional digital detox concierge",
+    ],
+  },
+  {
+    name: "Family Highland Retreat",
+    description:
+      "The Terrace Hearth Villa, a long table, and slow days the whole family will keep returning to.",
+    includes: [
+      "Terrace Hearth Villa stay",
+      "Family firepit supper",
+      "Guided valley walk for all ages",
+      "Cacao and coffee ceremony",
+    ],
+  },
+];
+
+export const testimonials = [
+  {
+    quote:
+      "We came for the view and stayed for the silence. By the second morning we had stopped checking the time entirely — the mist has its own schedule and you simply join it.",
+    name: "A couple from Makati",
+    context: "Cloudline Villa, two nights",
+  },
+  {
+    quote:
+      "The firepit dinner was the finest meal I've had in the mountains — and I grew up in them. Sulo treats highland ingredients with a respect you can taste.",
+    name: "A returning guest from Cebu",
+    context: "Terrace Hearth Villa, three nights",
+  },
+  {
+    quote:
+      "I checked in tired in a way I couldn't name. The forest bathing, the warm baths, the quiet staff who remember everything — I left feeling like myself again.",
+    name: "A solo traveler from Singapore",
+    context: "Forest Bathing Cabin, four nights",
+  },
+];
+
+export const journal = [
+  {
+    title: "The New Luxury of the Philippine Highlands",
+    excerpt:
+      "Why travelers are trading beachfront for ridge line — and what quiet altitude offers that sea level cannot.",
+    image: img("1470252649378-9c29740c9fa8", 1200),
+    tag: "Perspective",
+  },
+  {
+    title: "A Slow Weekend Above the Clouds",
+    excerpt:
+      "Forty-eight hours at Amara Ridge, hour by unhurried hour — from first coffee to last ember.",
+    image: img("1476514525535-07fb3b4ae5f1", 1200),
+    tag: "Itinerary",
+  },
+  {
+    title: "What to Pack for a Cool-Weather Mountain Retreat",
+    excerpt:
+      "Layers, linen, wool socks, and one good book. A short list for the Philippines' gentler climate.",
+    image: img("1441974231531-c6227db76b6e", 1200),
+    tag: "Field Notes",
+  },
 ];

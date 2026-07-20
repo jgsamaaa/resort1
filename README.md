@@ -1,28 +1,30 @@
-# 🏝️ Dalisay Cove — Beach Resort & Villas
+# 🏔️ Amara Ridge
 
-A stunning, fully-functioning resort website for a fictional boutique beach resort
-in **El Nido, Palawan, Philippines**.
+*A mountain sanctuary above the Philippine clouds.*
+
+A cinematic, single-page luxury mountain resort concept website — a fictional
+brand set in the Philippine highlands: private villas, misty mornings,
+highland Filipino dining, and wellness-led stays.
 
 **Stack:** Next.js 16 · TypeScript · Tailwind CSS v4 · Framer Motion
 
-## Pages
+## Homepage sections
 
-| Route | What's there |
-| --- | --- |
-| `/` | Full-screen hero, welcome story, featured rooms, experiences, guest review marquee, gallery, CTA |
-| `/rooms` | All 4 rooms + signature pool villa, rates table (low/high season), inclusions |
-| `/about` | The resort's story and values |
-| `/location` | Embedded map, GPS, and 4 ways to reach the resort (air, van, ferry, overland) |
-| `/booking` | Booking request form with live stay summary, night/total calculator, and confirmation screen |
-| `/contact` | Inquiry form + phone, WhatsApp, email, socials, front-desk hours |
+Premium nav (transparent → blurred solid) · cinematic hero with drifting mist
+and floating booking bar · atmosphere strip · brand story · 4 signature stays ·
+6 experiences · wellness · Sulo at the Ridge (highland dining) · editorial
+gallery · location & arrival · 3 seasonal offers · sample guest words ·
+journal · final CTA · full footer.
 
-## Features
+## Design system
 
-- 🎬 Scroll-reveal animations (Framer Motion), Ken Burns hero zoom, review marquee, hover effects
-- 📱 Fully responsive — mobile nav, fluid grids, adaptive typography
-- 🎨 Custom Tailwind v4 theme: ocean teals, sand neutrals, gold accents, Playfair Display + Jost
-- ⚡ 100% statically prerendered, `next/image` optimization throughout
-- ♿ Semantic HTML, labeled forms, alt text, keyboard-friendly
+- Palette: Pine Black `#101713`, Deep Forest `#1F3328`, Moss `#526B4E`,
+  Cloud Mist `#F4F1EA`, Warm Linen `#E7D8C6`, Stone Taupe `#B9AA96`,
+  Ember Gold `#C59B61`, Clay Brown `#7A5A3D`, Soft White `#FFFDF8`
+- Type: Cormorant Garamond (display) + Manrope (body)
+- Motion: Framer Motion scroll reveals, slow hero drift, mist band, hover
+  lifts and image zooms — all softened for `prefers-reduced-motion`
+- Texture: SVG film grain, radial vignettes, backdrop blur, hairline borders
 
 ## Run locally
 
@@ -31,12 +33,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+## Notes
 
-## Deploy
-
-Push to `main` on GitHub with the repo connected to [Vercel](https://vercel.com) and every push redeploys automatically.
-
----
-
-*All content (resort, reviews, contact details) is fictional demo content. Photography via Unsplash.*
+Amara Ridge is a fictional brand. All copy, testimonials, and offers are
+illustrative; the booking bar is a static prototype. Photography via Unsplash.

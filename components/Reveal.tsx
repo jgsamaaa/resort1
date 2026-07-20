@@ -1,19 +1,19 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
 const variants: Record<string, Variants> = {
   up: {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 36 },
     visible: { opacity: 1, y: 0 },
   },
   left: {
-    hidden: { opacity: 0, x: -48 },
+    hidden: { opacity: 0, x: -40 },
     visible: { opacity: 1, x: 0 },
   },
   right: {
-    hidden: { opacity: 0, x: 48 },
+    hidden: { opacity: 0, x: 40 },
     visible: { opacity: 1, x: 0 },
   },
   fade: {
@@ -21,7 +21,7 @@ const variants: Record<string, Variants> = {
     visible: { opacity: 1 },
   },
   zoom: {
-    hidden: { opacity: 0, scale: 0.92 },
+    hidden: { opacity: 0, scale: 0.96 },
     visible: { opacity: 1, scale: 1 },
   },
 };
@@ -30,21 +30,24 @@ export default function Reveal({
   children,
   direction = "up",
   delay = 0,
+  duration = 0.9,
   className,
 }: {
   children: ReactNode;
   direction?: keyof typeof variants;
   delay?: number;
+  duration?: number;
   className?: string;
 }) {
+  const reduceMotion = useReducedMotion();
   return (
     <motion.div
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.8, delay, ease: [0.21, 0.65, 0.36, 1] }}
-      variants={variants[direction]}
+      viewport={{ once: true, margin: "-70px" }}
+      transition={{ duration, delay, ease: [0.22, 0.61, 0.36, 1] }}
+      variants={reduceMotion ? variants.fade : variants[direction]}
     >
       {children}
     </motion.div>

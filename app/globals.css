@@ -1,31 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-sand-50: #faf7f0;
-  --color-sand-100: #f4eee0;
-  --color-sand-200: #e9ddc6;
-  --color-sand-300: #dbc9a4;
-  --color-sand-400: #c9af7c;
+  /* Amara Ridge palette */
+  --color-pine-950: #101713; /* Pine Black */
+  --color-pine-900: #17221c;
+  --color-forest-800: #1f3328; /* Deep Forest */
+  --color-forest-700: #2a4435;
+  --color-moss-500: #526b4e; /* Moss Green */
+  --color-moss-400: #6b8465;
+  --color-mist-100: #f4f1ea; /* Cloud Mist */
+  --color-linen-200: #e7d8c6; /* Warm Linen */
+  --color-taupe-400: #b9aa96; /* Stone Taupe */
+  --color-ember-500: #c59b61; /* Ember Gold */
+  --color-ember-400: #d4b078;
+  --color-clay-600: #7a5a3d; /* Clay Brown */
+  --color-cream-50: #fffdf8; /* Soft White */
 
-  --color-ocean-50: #eef7f8;
-  --color-ocean-100: #d8edef;
-  --color-ocean-200: #b0dbe0;
-  --color-ocean-300: #7cc2ca;
-  --color-ocean-400: #47a3ae;
-  --color-ocean-500: #2c8c99;
-  --color-ocean-600: #1f7280;
-  --color-ocean-700: #175d69;
-  --color-ocean-800: #114953;
-  --color-ocean-900: #0b3a43;
-  --color-ocean-950: #06272e;
-
-  --color-gold-300: #e3c98f;
-  --color-gold-400: #d4b06a;
-  --color-gold-500: #c6a15b;
-  --color-gold-600: #a98342;
-
-  --font-display: var(--font-playfair), "Playfair Display", serif;
-  --font-sans: var(--font-jost), "Jost", sans-serif;
+  --font-display: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-sans: var(--font-manrope), "Manrope", sans-serif;
 }
 
 html {
@@ -33,59 +25,62 @@ html {
 }
 
 body {
-  background: var(--color-sand-50);
-  color: var(--color-ocean-950);
+  background: var(--color-pine-950);
+  color: var(--color-mist-100);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
 ::selection {
-  background: var(--color-ocean-700);
-  color: var(--color-sand-50);
+  background: var(--color-ember-500);
+  color: var(--color-pine-950);
 }
 
-/* Slow Ken Burns zoom for hero imagery */
-@keyframes kenburns {
-  0% {
-    transform: scale(1) translateY(0);
-  }
-  100% {
-    transform: scale(1.12) translateY(-2%);
-  }
-}
-.animate-kenburns {
-  animation: kenburns 22s ease-out forwards;
+/* Fine film-grain so large dark surfaces don't band */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
 
-/* Gentle float for decorative elements */
-@keyframes floaty {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-.animate-floaty {
-  animation: floaty 5s ease-in-out infinite;
-}
-
-/* Continuous marquee for the reviews strip */
-@keyframes marquee {
+/* Very slow drift for hero imagery — cinematic, not busy */
+@keyframes slow-drift {
   from {
-    transform: translateX(0);
+    transform: scale(1.08) translateY(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: scale(1.16) translateY(-1.5%);
   }
 }
-.animate-marquee {
-  animation: marquee 55s linear infinite;
+.animate-slow-drift {
+  animation: slow-drift 36s ease-out forwards;
 }
-.animate-marquee:hover {
-  animation-play-state: paused;
+
+/* Drifting mist bands layered over the hero */
+@keyframes mist-drift {
+  from {
+    transform: translateX(-8%);
+  }
+  to {
+    transform: translateX(8%);
+  }
+}
+.animate-mist {
+  animation: mist-drift 26s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-drift,
+  .animate-mist {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Thin elegant scrollbar */
@@ -93,9 +88,25 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-sand-100);
+  background: var(--color-pine-950);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-ocean-800);
+  background: var(--color-forest-800);
   border-radius: 8px;
+}
+
+/* Hairline rule with an ember glint, used under section eyebrows */
+.rule-ember {
+  position: relative;
+  height: 1px;
+  background: color-mix(in srgb, var(--color-taupe-400) 30%, transparent);
+}
+.rule-ember::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
+  width: 48px;
+  background: var(--color-ember-500);
 }

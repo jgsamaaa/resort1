@@ -1,38 +1,30 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Jost } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/data";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
-const jost = Jost({
-  variable: "--font-jost",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: `${site.fullName} — El Nido, Palawan`,
-    template: `%s · ${site.name}`,
-  },
+  title: `${site.name} — ${site.tagline}`,
   description:
-    "A small luxury beachfront resort in El Nido, Palawan. White sand, turquoise water, a signature pool villa, and Filipino hospitality at its warmest. Book your island escape.",
-  keywords: [
-    "El Nido resort",
-    "Palawan beach resort",
-    "Philippines luxury villa",
-    "Dalisay Cove",
-    "beachfront suite El Nido",
-  ],
+    "A fictional luxury mountain resort concept in the Philippine highlands: private villas, misty mornings, highland Filipino dining, and wellness-led stays above the clouds.",
   openGraph: {
-    title: `${site.fullName} — El Nido, Palawan`,
+    title: `${site.name} — ${site.tagline}`,
     description:
-      "White sand, turquoise water, and Filipino hospitality at its warmest.",
+      "Private highland villas, firelit evenings, and warm Filipino hospitality above the clouds.",
     type: "website",
   },
 };
@@ -43,7 +35,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${jost.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${manrope.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
